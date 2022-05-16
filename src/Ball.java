@@ -2,7 +2,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 public class Ball {
-	private static final int DIAMETER = 30;
+	private static final int DIAMETER = 10;
 	
 	int x = 0;
 	int y = 0;
