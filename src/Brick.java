@@ -1,14 +1,14 @@
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-public class Brick {
+public abstract class Brick {
 
     private Game game;
-    private int x;
-    private int Y;
+    protected int x;
+    protected int Y;
     private int healthPoints;
-    private int HEIGHT = 10;
-    private int WITH = 30;
+    protected int HEIGHT = 30;
+    protected int WITH = 90;
 
     public Brick(Game game, int x, int Y) {
         this.game = game;
@@ -44,11 +44,11 @@ public class Brick {
         setHealthPoints(healthPoints);
     }
 
-    public void paint(Graphics2D g) {
-        g.fillRect(x, Y, WITH, HEIGHT);
-    }
+   public abstract void paint(Graphics2D g);
 
     public Rectangle getBounds() {
         return new Rectangle(x, Y, WITH, HEIGHT);
     }
+ 
+
 }

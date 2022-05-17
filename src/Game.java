@@ -19,7 +19,6 @@ public class Game extends JPanel {
 
   Ball ball = new Ball(this);
   Racquet racquet = new Racquet(this);
-  Brick brick = new Brick(this, brickPossX, brickPossY);
   ArrayList<Brick> brickList = new ArrayList<Brick>();
 
   public static void main(String[] args) throws InterruptedException {
@@ -30,28 +29,49 @@ public class Game extends JPanel {
   public void principal() throws InterruptedException {
     JFrame frame = new JFrame("Mini Tennis");
     Game game = this;
-
+    this.setBackground(Color.decode("#52514E"));
     frame.add(game);
     frame.setSize(300, 400);
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    for (int i = 0; i < 10; i++) {
-      while (brickPossX < frame.getSize().getWidth()) {
-        brickList.add(new RedBrick(game, brickPossX, brickPossY));
-
-        brickPossX += 35;
-
-        System.out.println("x: " + brickPossX);
-      }
-      brickPossX = 0;
-      brickPossY += 15;
-    }
+    createBrick(game, frame);
 
     while (true) {
       game.move();
       game.repaint();
+      if (brickList.isEmpty()) {
+        gameOver();
+      }
       Thread.sleep(10);
     }
+  }
+
+  private void createBrick(Game game, JFrame frame) {
+    for (int i = 0; i < 4; i++) {
+      while (brickPossX < frame.getSize().getWidth() - 90) {
+        switch (getRandomNumber(1, 4)) {
+          case 1:
+            brickList.add(new RedBrick(game, brickPossX, brickPossY));
+            break;
+          case 2:
+            brickList.add(new BlueBrick(game, brickPossX, brickPossY));
+            break;
+          case 3:
+            brickList.add(new GreenBrick(game, brickPossX, brickPossY));
+            break;
+        }
+
+        brickPossX += 95;
+
+        System.out.println("x: " + brickPossX);
+      }
+      brickPossX = 0;
+      brickPossY += 35;
+    }
+  }
+
+  public int getRandomNumber(int min, int max) {
+    return (int) ((Math.random() * (max - min)) + min);
   }
 
   private int getScore() {
@@ -100,7 +120,6 @@ public class Game extends JPanel {
       brickList.get(i).paint(g2d);
     }
 
-    g2d.setColor(Color.GRAY);
     g2d.setFont(new Font("Verdana", Font.BOLD, 30));
     g2d.drawString(String.valueOf(getScore()), 10, 30);
   }
@@ -108,12 +127,14 @@ public class Game extends JPanel {
   public void gameOver() {
     Sound.BACK.stop();
     Sound.GAMEOVER.play();
+
     JOptionPane.showMessageDialog(
       this,
       "your score is: " + getScore(),
       "Game Over",
       JOptionPane.YES_NO_OPTION
     );
+
     System.exit(ABORT);
   }
 }
