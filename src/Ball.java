@@ -42,7 +42,12 @@ public class Ball {
   private boolean collisionBrick() {
     for (int i = 0; i < game.brickList.size(); i++) {
       if (game.brickList.get(i).getBounds().intersects(getBounds())) {
-        game.brickList.remove(i);
+        if (game.brickList.get(i).getHealthPoints()> 0){
+          game.brickList.get(i).reduceHealthPoints();
+        }else{
+          game.brickList.remove(i);
+        }
+        
         return true;
       }
     }

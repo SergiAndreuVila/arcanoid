@@ -3,6 +3,8 @@ import java.awt.Graphics2D;
 
 public class BlueBrick extends Brick {
 
+  private int healthPoints =0;
+
   public BlueBrick(Game game, int x, int Y) {
     super(game, x, Y);
   }
@@ -16,4 +18,20 @@ public class BlueBrick extends Brick {
     g.setColor(Color.BLUE);
     g.fillRect(x, Y, WITH, HEIGHT);
   }
+
+  public int getHealthPoints() {
+    return healthPoints;
+}
+
+public void setHealthPoints(int healthPoints) {
+    this.healthPoints = healthPoints;
+}
+
+public void reduceHealthPoints(){
+  this.healthPoints --;
+}
+public void deadAction(){
+  Game.speed ++;
+}
+
 }

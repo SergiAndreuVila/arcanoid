@@ -5,10 +5,10 @@ public abstract class Brick {
 
     private Game game;
     protected int x;
-    protected int Y;
-    private int healthPoints;
+    protected int Y;    
     protected int HEIGHT = 30;
     protected int WITH = 90;
+    private int healthPoints;
 
     public Brick(Game game, int x, int Y) {
         this.game = game;
@@ -32,22 +32,25 @@ public abstract class Brick {
         this.Y = Y;
     }
 
-    public int getHealthPoints() {
-        return healthPoints;
-    }
-
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
-    }
-
-    public void assignHealthPoints(int healthPoints) {
-        setHealthPoints(healthPoints);
-    }
-
    public abstract void paint(Graphics2D g);
 
     public Rectangle getBounds() {
         return new Rectangle(x, Y, WITH, HEIGHT);
+    }
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+    
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
+    }
+    
+    public void reduceHealthPoints(){
+      this.healthPoints --;
+    }
+    public void deadAction(){
+  
     }
  
 

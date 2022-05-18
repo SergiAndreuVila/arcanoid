@@ -3,6 +3,8 @@ import java.awt.Graphics2D;
 
 public class RedBrick extends Brick {
 
+  private int healthPoints =1;
+
   public RedBrick(Game game, int x, int Y) {
     super(game, x, Y);
   }
@@ -16,4 +18,20 @@ public class RedBrick extends Brick {
     g.setColor(Color.RED);
     g.fillRect(x, Y, WITH, HEIGHT);
   }
+
+  public int getHealthPoints() {
+    return healthPoints;
+}
+
+public void setHealthPoints(int healthPoints) {
+    this.healthPoints = healthPoints;
+}
+
+public void reduceHealthPoints(){
+  this.healthPoints --;
+}
+
+public void deadAction(){
+  
+}
 }
