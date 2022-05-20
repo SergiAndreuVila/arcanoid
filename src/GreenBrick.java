@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class GreenBrick extends Brick {
-
+  private Game game;
   private int healthPoints =2;
 
   public GreenBrick(Game game, int x, int Y) {
@@ -16,7 +16,15 @@ public class GreenBrick extends Brick {
 
   @Override
   public void paint(Graphics2D g) {
-    g.setColor(Color.GREEN);
+
+    if (this.healthPoints == 2){
+      g.setColor(Color.GREEN);
+    }else if (this.healthPoints == 1){
+      g.setColor(Color.LIGHT_GRAY);
+    }else{
+      g.setColor(Color.ORANGE);
+    }
+   
     g.fillRect(x, Y, WITH, HEIGHT);
   }
   public int getHealthPoints() {

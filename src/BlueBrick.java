@@ -2,7 +2,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class BlueBrick extends Brick {
-
   private int healthPoints =0;
 
   public BlueBrick(Game game, int x, int Y) {
@@ -31,7 +30,8 @@ public void reduceHealthPoints(){
   this.healthPoints --;
 }
 public void deadAction(){
-  Game.speed ++;
+ game.racquet.increseRacquetSpeed();
+ System.out.println("dead action");
 }
 
 }

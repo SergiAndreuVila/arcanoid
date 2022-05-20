@@ -45,7 +45,10 @@ public class Ball {
         if (game.brickList.get(i).getHealthPoints()> 0){
           game.brickList.get(i).reduceHealthPoints();
         }else{
+          game.brickList.get(i).deadAction();
+          
           game.brickList.remove(i);
+          
         }
         
         return true;

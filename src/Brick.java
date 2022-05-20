@@ -3,7 +3,7 @@ import java.awt.Rectangle;
 
 public abstract class Brick {
 
-    private Game game;
+    protected Game game;
     protected int x;
     protected int Y;    
     protected int HEIGHT = 30;

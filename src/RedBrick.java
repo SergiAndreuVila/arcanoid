@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class RedBrick extends Brick {
-
+  private Game game;
   private int healthPoints =1;
 
   public RedBrick(Game game, int x, int Y) {
@@ -15,7 +15,11 @@ public class RedBrick extends Brick {
 
   @Override
   public void paint(Graphics2D g) {
-    g.setColor(Color.RED);
+    if (this.healthPoints == 1){
+      g.setColor(Color.RED);
+    }else{
+      g.setColor(Color.ORANGE);
+    }
     g.fillRect(x, Y, WITH, HEIGHT);
   }
 
@@ -32,6 +36,6 @@ public void reduceHealthPoints(){
 }
 
 public void deadAction(){
-  
+
 }
 }
