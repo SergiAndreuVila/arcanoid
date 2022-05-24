@@ -46,7 +46,13 @@ public class Racquet {
     return Y - HEIGHT;
   }
 
-  public void increseRacquetSpeed() {
-    Racquet.racquetSpeed++;
+  public void alterRacquetSpeed( boolean modSpeed) {
+    if (modSpeed){
+      Racquet.racquetSpeed += 3;
+    }
+    else if (!modSpeed){
+      Racquet.racquetSpeed -= 3;
+    }
+    
   }
 }

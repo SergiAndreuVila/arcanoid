@@ -1,13 +1,9 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-<<<<<<< HEAD
 public class BlueBrick extends Brick implements Runnable {
-  private int healthPoints =0;
-=======
-public class BlueBrick extends Brick {
   private int healthPoints = 0;
->>>>>>> 875277d9f9d13a84d814f1c7823bfa8c67113f5e
+  
 
   public BlueBrick(Game game, int x, int Y, int height, int width) {
     super(game, x, Y, height, width);
@@ -36,8 +32,32 @@ public class BlueBrick extends Brick {
   }
 
   public void deadAction(int i) {
+    new Thread(new Runnable(){
 
+  
+      public void run(){
+         
+        game.racquet.alterRacquetSpeed( true);
+        try {
+          game.clock.wait(1000);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+        game.racquet.alterRacquetSpeed( false);
+    
+        
+      }
+    }).start();
+    
+    
     game.brickList.remove(i);
   }
+
+  @Override
+  public void run() {
+    // TODO Auto-generated method stub
+    
+  }
+  
 
 }
