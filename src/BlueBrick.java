@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class BlueBrick extends Brick {
+public class BlueBrick extends Brick implements Runnable {
   private int healthPoints =0;
 
   public BlueBrick(Game game, int x, int Y) {
