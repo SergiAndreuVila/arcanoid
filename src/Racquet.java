@@ -5,22 +5,21 @@ import java.awt.event.KeyEvent;
 
 public class Racquet {
 
-  private static final int Y = 330;
-  private static final int WITH = 60;
+  private static final int Y = 630;
+  private static final int WITH = 90;
   private static final int HEIGHT = 10;
   int x = 0;
   int xa = 0;
- private static int racquetSpeed = 3;
+  private static int racquetSpeed = 3;
   private Game game;
-
-  
 
   public Racquet(Game game) {
     this.game = game;
   }
 
   public void move() {
-    if (x + xa > 0 && x + xa < game.getWidth() - WITH) x = x + xa;
+    if (x + xa > 0 && x + xa < game.getWidth() - WITH)
+      x = x + xa;
   }
 
   public void paint(Graphics2D g) {
@@ -33,8 +32,10 @@ public class Racquet {
   }
 
   public void keyPressed(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_LEFT) xa = -racquetSpeed;
-    if (e.getKeyCode() == KeyEvent.VK_RIGHT) xa = racquetSpeed;
+    if (e.getKeyCode() == KeyEvent.VK_LEFT)
+      xa = -racquetSpeed;
+    if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+      xa = racquetSpeed;
   }
 
   public Rectangle getBounds() {
@@ -44,8 +45,8 @@ public class Racquet {
   public int getTopY() {
     return Y - HEIGHT;
   }
-  public void increseRacquetSpeed(){
-    Racquet.racquetSpeed ++;
-    System.out.println("increse raquet speed");
+
+  public void increseRacquetSpeed() {
+    Racquet.racquetSpeed++;
   }
 }

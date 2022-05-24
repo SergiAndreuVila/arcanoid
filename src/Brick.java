@@ -5,15 +5,33 @@ public abstract class Brick {
 
     protected Game game;
     protected int x;
-    protected int Y;    
-    protected int HEIGHT = 30;
-    protected int WITH = 90;
+    protected int Y;
+    protected int HEIGHT;
+    protected int WIDTH;
     private int healthPoints;
 
-    public Brick(Game game, int x, int Y) {
+    public Brick(Game game, int x, int Y, int height, int width) {
         this.game = game;
         this.setX(x);
         this.setY(Y);
+        this.setHeight(height);
+        this.setWidth(width);
+    }
+
+    public int getHeight() {
+        return HEIGHT;
+    }
+
+    public void setHeight(int height) {
+        this.HEIGHT = height;
+    }
+
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    public void setWidth(int width) {
+        this.WIDTH = width;
     }
 
     public int getX() {
@@ -32,26 +50,26 @@ public abstract class Brick {
         this.Y = Y;
     }
 
-   public abstract void paint(Graphics2D g);
+    public abstract void paint(Graphics2D g);
 
     public Rectangle getBounds() {
-        return new Rectangle(x, Y, WITH, HEIGHT);
+        return new Rectangle(x, Y, WIDTH, HEIGHT);
     }
 
     public int getHealthPoints() {
         return healthPoints;
     }
-    
+
     public void setHealthPoints(int healthPoints) {
         this.healthPoints = healthPoints;
     }
-    
-    public void reduceHealthPoints(){
-      this.healthPoints --;
+
+    public void reduceHealthPoints() {
+        this.healthPoints--;
     }
-    public void deadAction(){
-  
+
+    public void deadAction(int i) {
+
     }
- 
 
 }

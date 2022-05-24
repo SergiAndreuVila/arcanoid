@@ -10,6 +10,8 @@ public class Ball {
   int y = 200;
   int xa = 1;
   int ya = 1;
+
+  int ballSpeed = 3;
   private Game game;
 
   public Ball(Game game) {
@@ -18,19 +20,25 @@ public class Ball {
 
   void move() {
     boolean changeDirection = true;
-    if (x + xa < 0) xa = game.speed; else if (
-      x + xa > game.getWidth() - DIAMETER
-    ) xa = -game.speed; else if (y + ya < 0) ya = game.speed; else if (
-      y + ya > game.getHeight() - DIAMETER
-    ) game.gameOver(); else if (collisionBall()) {
-      ya = -game.speed;
+    if (x + xa < 0)
+      xa = ballSpeed;
+    else if (x + xa > game.getWidth() - DIAMETER)
+      xa = -ballSpeed;
+    else if (y + ya < 0)
+      ya = ballSpeed;
+    else if (y + ya > game.getHeight() - DIAMETER)
+      game.gameOver();
+    else if (collisionBall()) {
+      ya = -ballSpeed;
       y = game.racquet.getTopY() - DIAMETER;
     } else if (collisionBrick()) {
       ya = -ya;
       xa = -xa;
-    } else changeDirection = false;
+    } else
+      changeDirection = false;
 
-    if (changeDirection) Sound.BALL.play();
+    if (changeDirection)
+      Sound.BALL.play();
     x = x + xa;
     y = y + ya;
   }
@@ -42,15 +50,16 @@ public class Ball {
   private boolean collisionBrick() {
     for (int i = 0; i < game.brickList.size(); i++) {
       if (game.brickList.get(i).getBounds().intersects(getBounds())) {
-        if (game.brickList.get(i).getHealthPoints()> 0){
+        if (game.brickList.get(i).getHealthPoints() > 0) {
           game.brickList.get(i).reduceHealthPoints();
-        }else{
-          game.brickList.get(i).deadAction();
-          
-          game.brickList.remove(i);
-          
+          game.puntuation += 10;
+        } else {
+          game.brickList.get(i).deadAction(i);
+
+          game.puntuation += 100;
+
         }
-        
+
         return true;
       }
     }
