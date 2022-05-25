@@ -14,19 +14,20 @@ import javax.swing.JPanel;
 public class Game extends JPanel {
 
   // Brick parameters
-  int brickPossX = 0;
-  int brickPossY = 0;
+  int spaceBetweenBrick = 5;
+  int brickPossX = spaceBetweenBrick;
+  int brickPossY = scoreboardHeight;
   int brickRows = 7;
   int brickHeight = 30;
   int brickWidth = 90;
-  int spaceBetweenBrick = 5;
 
   // Puntuation
   int puntuation = 0;
 
   // Window settings
-  int windowWidth = 600;
-  int windowHeight = 800;
+  static int windowWidth = 600;
+  static int windowHeight = 800;
+  static int scoreboardHeight = 50;
 
   int refreshRate = 10;
 
@@ -55,7 +56,7 @@ public class Game extends JPanel {
       game.move();
       game.repaint();
       if (brickList.isEmpty()) {
-        gameOver();
+        createBrick(game, frame);
       }
       clock.wait(refreshRate);
     }
@@ -80,7 +81,7 @@ public class Game extends JPanel {
 
         System.out.println("x: " + brickPossX);
       }
-      brickPossX = 0;
+      brickPossX = spaceBetweenBrick;
       brickPossY += (brickHeight + spaceBetweenBrick);
     }
   }
@@ -136,6 +137,7 @@ public class Game extends JPanel {
     g.setColor(Color.BLACK);
     g2d.setFont(new Font("Verdana", Font.BOLD, 30));
     g2d.drawString(String.valueOf(getScore()), 10, 30);
+    g2d.drawString(String.valueOf("HP: " + ball.getHealthPoints()), windowWidth - 130, 30);
   }
 
   public void gameOver() {

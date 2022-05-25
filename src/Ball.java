@@ -5,9 +5,10 @@ import java.awt.Rectangle;
 public class Ball {
 
   private static final int DIAMETER = 30;
+  private int healthPoints = 3;
 
-  int x = 200;
-  int y = 200;
+  int x = (Game.windowWidth / 2) - (DIAMETER / 2);
+  int y = (Game.windowHeight / 2) - (DIAMETER / 2);
   int xa = 1;
   int ya = 1;
 
@@ -18,17 +19,32 @@ public class Ball {
     this.game = game;
   }
 
+  public int getHealthPoints() {
+    return healthPoints;
+  }
+
+  public void setHealthPoints(int healthPoints) {
+    this.healthPoints = healthPoints;
+  }
+
   void move() {
     boolean changeDirection = true;
-    if (x + xa < 0)
+    if (x + xa < 0) {
       xa = ballSpeed;
-    else if (x + xa > game.getWidth() - DIAMETER)
+    } else if (x + xa > game.getWidth() - DIAMETER) {
       xa = -ballSpeed;
-    else if (y + ya < 0)
+    } else if (y + ya < 0) {
       ya = ballSpeed;
-    else if (y + ya > game.getHeight() - DIAMETER)
-      game.gameOver();
-    else if (collisionBall()) {
+    } else if (y + ya > game.getHeight() - DIAMETER) {
+      if (this.healthPoints > 0) {
+        this.healthPoints--;
+        y = (Game.windowHeight / 2) - (DIAMETER / 2);
+
+      } else {
+        game.gameOver();
+      }
+
+    } else if (collisionBall()) {
       ya = -ballSpeed;
       y = game.racquet.getTopY() - DIAMETER;
     } else if (collisionBrick()) {

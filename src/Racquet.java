@@ -8,7 +8,7 @@ public class Racquet {
   private static final int Y = 630;
   private static final int WITH = 90;
   private static final int HEIGHT = 10;
-  int x = 0;
+  int x = (Game.windowWidth / 2) - (WITH / 2);
   int xa = 0;
   private static int racquetSpeed = 3;
   private Game game;
@@ -46,13 +46,12 @@ public class Racquet {
     return Y - HEIGHT;
   }
 
-  public void alterRacquetSpeed( boolean modSpeed) {
-    if (modSpeed){
+  public void alterRacquetSpeed(boolean modSpeed) {
+    if (modSpeed) {
       Racquet.racquetSpeed += 3;
-    }
-    else if (!modSpeed){
+    } else if (!modSpeed) {
       Racquet.racquetSpeed -= 3;
     }
-    
+
   }
 }

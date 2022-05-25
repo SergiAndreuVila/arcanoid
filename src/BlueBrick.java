@@ -3,7 +3,7 @@ import java.awt.Graphics2D;
 
 public class BlueBrick extends Brick implements Runnable {
   private int healthPoints = 0;
-  
+  private int speedBuffTime = 10000;
 
   public BlueBrick(Game game, int x, int Y, int height, int width) {
     super(game, x, Y, height, width);
@@ -32,32 +32,28 @@ public class BlueBrick extends Brick implements Runnable {
   }
 
   public void deadAction(int i) {
-    new Thread(new Runnable(){
+    new Thread(new Runnable() {
 
-  
-      public void run(){
-         
-        game.racquet.alterRacquetSpeed( true);
+      public void run() {
+
+        game.racquet.alterRacquetSpeed(true);
         try {
-          game.clock.wait(1000);
+          game.clock.wait(speedBuffTime);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
-        game.racquet.alterRacquetSpeed( false);
-    
-        
+        game.racquet.alterRacquetSpeed(false);
+
       }
     }).start();
-    
-    
+
     game.brickList.remove(i);
   }
 
   @Override
   public void run() {
     // TODO Auto-generated method stub
-    
+
   }
-  
 
 }
